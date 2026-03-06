@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOCUS - Intervenção Comportamental</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+    :root {
+        --primary: #1a5276;
+        --accent: #3498db;
+        --path-bg: #e0e0e0;
+        --text-color: #444;
+        --card-width: 320px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* --- NAVBAR --- */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: white;
+        padding: 15px 50px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    /* --- QUEM SOMOS --- */
+    .quemSomos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 50px;
+        padding: 160px 10% 80px 10%;
+        background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('logo Focus .jpg');
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .foto-placeholder {
+        width: 100%;
+        height: 400px;
+        background: #ddd;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .h1QuemSomos { color: var(--primary); font-size: 2.5rem; margin-bottom: 20px; }
+    .pQuemSomos { color: var(--text-color); line-height: 1.6; font-size: 1.05rem; }
+
+    /* --- LINHA DO TEMPO CORRIGIDA --- */
+    .timeline-section {
+        background: #fdfdfd;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 0 60px 0;
+        box-sizing: border-box;
+    }
+
+    .timeline-title {
+        text-align: center;
+        color: var(--primary);
+        font-size: 2.8rem;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin: 0 0 40px 0;
+        z-index: 10;
+    }
+
+    .maze-horizontal-scroll {
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        width: 100%;
+        height: 500px; 
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        position: relative;
+    }
+    .maze-horizontal-scroll::-webkit-scrollbar { display: none; }
+
+    .maze-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 0 20% 0 20%; 
+        height: 100%;
+        position: relative;
+        min-width: fit-content;
+    }
+
+    .timeline-track {
+        position: absolute;
+        height: 4px;
+        background: var(--path-bg);
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    .maze-progress {
+        position: absolute;
+        height: 100%;
+        background: var(--accent);
+        width: 0;
+        left: 0;
+        z-index: 2;
+        transition: width 0.3s ease-out;
+    }
+
+    .node {
+        position: relative;
+        width: var(--card-width);
+        margin-right: 120px;
+        flex-shrink: 0;
+        z-index: 3;
+        display: flex;
+        justify-content: center;
+    }
+
+    .node:last-child { margin-right: 0; }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        width: var(--card-width);
+        position: absolute;
+        border-bottom: 5px solid var(--path-bg);
+        transition: 0.4s ease;
+        opacity: 0.2;
+        max-height: 220px;
+        overflow-y: auto;
+    }
+
+    .node:nth-child(odd) .card { top: 40px; } 
+    .node:nth-child(even) .card { bottom: 40px; }
+
+    .dot {
+        width: 22px;
+        height: 22px;
+        background: white;
+        border: 3px solid var(--path-bg);
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+    }
+
+    .node.active .card { 
+        border-bottom-color: var(--accent); 
+        opacity: 1; 
+        transform: scale(1.05);
+        z-index: 100;
+    }
+
+    .node.active .dot { 
+        background: var(--accent); 
+        border-color: white; 
+        box-shadow: 0 0 15px var(--accent); 
+    }
+
+    .nav-container-timeline {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        z-index: 100;
+    }
+
+    .nav-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        transition: 0.3s ease;
+    }
+
+    /* --- SEÇÃO SERVIÇOS --- */
+    .sectionServicos {
+        padding: 100px 10%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bg-logo-destaque {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        height: 50%;
+        background-image: url('Logos FocusHORIZONTAL.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        opacity: 0.07;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .divServicos { margin-bottom: 50px; z-index: 2; text-align: center; }
+    .h2servicos { color: var(--primary); font-size: 2.8rem; font-weight: bold; letter-spacing: 2px; }
+
+    .services-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        width: 100%;
+        max-width: 1200px;
+        z-index: 2;
+    }
+
+    .node_servico { flex: 1; display: flex; min-width: 300px; }
+
+    .cardServico {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 40px 30px;
+        border-radius: 20px;
+        border: 1px solid #eee;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .cardServico:hover {
+        transform: translateY(-12px);
+        border-color: var(--accent);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .service-icon {
+        font-size: 3.5rem;
+        color: var(--accent);
+        margin-bottom: 20px;
+    }
+
+    .cardServico span {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin-bottom: 25px;
+        display: block;
+    }
+
+    .cardServico button {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        margin-top: auto;
+    }
+
+    .cardServico button:hover { background-color: var(--accent); }
+
+    @media (max-width: 992px) {
+        .services-container { flex-direction: column; align-items: center; }
+    }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><strong>FOCUS</strong></div>
+        <button style="border:1px solid var(--primary); background:none; padding:8px 15px; border-radius:5px; color:var(--primary); font-weight:bold; cursor:pointer;">Contacto</button>
+    </nav>
+
+    <section class="quemSomos">
+        <div class="foto-placeholder">FOTO/LOGO</div>
+        <div class="texto-quem-somos">
+            <h1 class="h1QuemSomos">Quem somos?</h1>
+            <p class="pQuemSomos">Somos uma clínica transdisciplinar com atuação baseada na ciência da Análise do Comportamento Aplicada – ABA...</p>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <h2 class="timeline-title">HISTÓRIA</h2>
+        <div class="maze-horizontal-scroll" id="scrollContainer">
+            <div class="maze-wrapper">
+                <div class="timeline-track" id="timelineTrack">
+                    <div class="maze-progress" id="progressLine"></div>
+                </div>
+                <div class="node"><div class="card"><span class="year">2017</span><p>Surge a Focus em Natal - RN.</p></div><div class="dot"></div></div>
+                <div class="node"><div class="card"><span class="year">2018</span><p>Reconhecimento na ciência ABA.</p></div><div class="dot"></div></div>
+                <div class="node"><div class="card"><span class="year">2019</span><p>Nova sede e 1º Vivenciar Autismos.</p></div><div class="dot"></div></div>
+                <div class="node"><div class="card"><span class="year">2020</span><p>Adaptação e novos protocolos clínicos.</p></div><div class="dot"></div></div>
+                <div class="node"><div class="card"><span class="year">2021</span><p>Expansão da equipe e infraestrutura.</p></div><div class="dot"></div></div>
+                <div class="node"><div class="card"><span class="year">2022</span><p>Novas especialidades transdisciplinares.</p></div><div class="dot"></div></div>
+                <div class="node"><div class="card"><span class="year">2023/24</span><p>Expansão e novas unidades especializadas.</p></div><div class="dot"></div></div>
+            </div>
+        </div>
+        <div class="nav-container-timeline">
+            <button class="nav-btn" onclick="goToStep(-1)">←</button>
+            <button class="nav-btn" onclick="goToStep(1)">→</button>
+        </div>
+    </section>
+
+    <section class="sectionServicos">
+        <div class="bg-logo-destaque"></div>
+        <div class="divServicos">
+            <h2 class="h2servicos">Serviços</h2>
+        </div>
+        <div class="services-container">
+            <div class="node_servico">
+                <div class="cardServico">
+                    <i class="fas fa-brain service-icon"></i>
+                    <span>Intervenção ABA</span>
+                    <button class="buttonServico1">Saiba mais</button>
+                </div>
+            </div>
+            <div class="node_servico">
+                <div class="cardServico">
+                    <i class="fas fa-user-tie service-icon"></i> <span>Supervisão</span>
+                    <button class="buttonServico2">Saiba mais</button>
+                </div>
+            </div>
+            <div class="node_servico">
+                <div class="cardServico">
+                    <i class="fas fa-plus-circle service-icon"></i>
+                    <span>Outros Serviços</span>
+                    <button class="buttonServico3">Saiba mais</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            const scrollContainer = document.getElementById('scrollContainer');
+            const nodes = document.querySelectorAll('.node');
+            const progressLine = document.getElementById('progressLine');
+            const timelineTrack = document.getElementById('timelineTrack');
+            let currentIndex = 0;
+
+            function setupTrack() {
+                if(!nodes.length || !timelineTrack) return;
+                const startX = nodes[0].offsetLeft + (nodes[0].offsetWidth / 2);
+                const endX = nodes[nodes.length - 1].offsetLeft + (nodes[nodes.length - 1].offsetWidth / 2);
+                timelineTrack.style.left = startX + "px";
+                timelineTrack.style.width = (endX - startX) + "px";
+                updateProgressBar();
+            }
+
+            function updateProgressBar() {
+                if(!nodes.length || !progressLine) return;
+                const startX = nodes[0].offsetLeft + (nodes[0].offsetWidth / 2);
+                const currentX = nodes[currentIndex].offsetLeft + (nodes[currentIndex].offsetWidth / 2);
+                progressLine.style.width = (currentX - startX) + "px";
+            }
+
+            window.goToStep = function(dir) {
+                currentIndex = Math.max(0, Math.min(nodes.length - 1, currentIndex + dir));
+                const node = nodes[currentIndex];
+                const targetX = (node.offsetLeft + (node.offsetWidth / 2)) - (scrollContainer.clientWidth / 2);
+                
+                scrollContainer.scrollTo({ left: targetX, behavior: 'smooth' });
+                
+                nodes.forEach((n, i) => n.classList.toggle('active', i === currentIndex));
+                updateProgressBar();
+            }
+
+            const setupBtn = (cl, url) => {
+                const b = document.querySelector(cl);
+                if(b) b.onclick = () => window.location.href = url;
+            }
+
+            setupBtn(".buttonServico1", "servico1.html");
+            setupBtn(".buttonServico2", "servico2.html");
+            setupBtn(".buttonServico3", "servico3.html");
+
+            // Garantir que o track seja montado após o render
+            setTimeout(setupTrack, 100);
+            window.goToStep(0);
+            window.onresize = setupTrack;
+        });
+    </script>
+</body>
+</html>
