@@ -301,6 +301,244 @@
     @media (max-width: 992px) {
         .services-container { flex-direction: column; align-items: center; }
     }
+
+/* --- SEÇÃO NOSSOS VALORES (DESIGN PREMIUM) --- */
+.nossosValores-container {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    text-align: center;
+    overflow: hidden;
+}
+
+.tituloValores {
+    color: var(--primary);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    display: inline-block;
+}
+
+.tituloValores::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Container do Slider */
+.valores-viewport {
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 0;
+    cursor: grab;
+}
+
+.valores-slider {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scrollAutomático 30s linear infinite; /* Animação contínua */
+}
+
+/* Pausa ao passar o mouse */
+.valores-viewport:hover .valores-slider {
+    animation-play-state: paused;
+}
+
+@keyframes scrollAutomático {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-280px * 7 - 30px * 7)); } /* Ajuste baseado no num de itens */
+}
+
+.nodeValores {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.cardValores {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 40px 20px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+    position: relative;
+}
+
+/* Ícone decorativo antes do texto */
+.cardValores::before {
+    content: '\f005'; /* Ícone estrela do FontAwesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+    opacity: 0.3;
+    transition: 0.4s;
+}
+
+.cardValores p {
+    margin: 0;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hover Effect */
+.cardValores:hover {
+    transform: translateY(-15px) scale(1.05);
+    background: var(--primary);
+    box-shadow: 0 25px 50px rgba(26, 82, 118, 0.2);
+}
+
+.cardValores:hover p {
+    color: white;
+}
+
+.cardValores:hover::before {
+    color: var(--accent);
+    opacity: 1;
+    transform: rotate(360deg);
+}
+
+/* --- SEÇÃO UNIDADES (COMPLETA) --- */
+.unidades-container {
+    padding: 100px 0;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.tituloUnidades {
+    color: var(--primary);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Linha decorativa abaixo do título */
+.tituloUnidades::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.unidades {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 10%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.unidade1, .unidade2 {
+    flex: 1;
+    background: #fdfdfd;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Alinha o texto interno à esquerda para leitura */
+    position: relative;
+}
+
+.unidade1:hover, .unidade2:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(26, 82, 118, 0.15);
+    border-color: var(--accent);
+}
+
+.unidades img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    background-color: #e0e0e0;
+    transition: 0.5s;
+}
+
+.h3unidades {
+    color: var(--primary);
+    font-size: 1.6rem;
+    margin: 30px 25px 15px 25px;
+    font-weight: 700;
+}
+
+.unidades p {
+    color: var(--text-color);
+    line-height: 1.8;
+    margin: 0 25px 40px 25px;
+    font-size: 1.1rem;
+}
+
+/* Etiquetas de identificação modernas */
+.unidade1::before, .unidade2::before {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    z-index: 10;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.unidade1::before {
+    content: "UNIDADE INFANTIL";
+    background: var(--accent);
+    color: white;
+}
+
+.unidade2::before {
+    content: "ADOLESCENTES E ADULTOS";
+    background: var(--primary);
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .unidades {
+        flex-direction: column;
+        padding: 0 5%;
+    }
+    .unidades img {
+        height: 280px;
+    }
+    .tituloUnidades {
+        font-size: 2.2rem;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -369,6 +607,43 @@
         </div>
     </section>
 
+    <section class="nossosValores-container">
+    <h2 class="tituloValores">Nossos Valores</h2>
+    
+        <div class="valores-viewport">
+            <div class="valores-slider" id="valoresSlider">
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Trabalho em equipe</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Ética</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Empatia</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Aprendizado Contínuo</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Compromisso</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Proatividade</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Verdade e transparência</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Trabalho em equipe</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Ética</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Empatia</p></div></div>
+                <div class="nodeValores"><div class="cardValores" style="border-top: 5px solid #3498db;"><p>Aprendizado Contínuo</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="unidades-container">
+    <h2 class="tituloUnidades">Nossas Unidades</h2>
+    
+    <div class="unidades">
+        <div class="unidade1">
+            <img src="foto-unidade-infantil.jpg" alt="fotoUnidade1">
+            <h3 class="h3unidades">Estrutura e Diferenciais</h3>
+            <p>Nossa unidade infantil é organizada em ambientes que proporcionam maior capacidade de atendimento individual e coletivo.</p>
+        </div>
+
+        <div class="unidade2">
+            <img src="foto-unidade-adultos.jpg" alt="fotoUnidade2">
+            <h3 class="h3unidades">Estrutura e Diferenciais</h3>
+            <p>Nossa unidade de adolescentes e adultos é organizada em ambientes que proporcionam maior capacidade de atendimento individual e coletivo.</p>
+        </div>
+    </div>
+</section>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             
@@ -419,6 +694,15 @@
             window.goToStep(0);
             window.onresize = setupTrack;
         });
+
+        function scrollValores(dir) {
+    const slider = document.getElementById('valoresSlider');
+    const scrollAmount = 280; // Largura do card + gap
+    slider.scrollBy({
+        left: dir * scrollAmount,
+        behavior: 'smooth'
+    });
+}
     </script>
 </body>
 </html>
