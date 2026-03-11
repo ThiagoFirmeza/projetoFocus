@@ -1,0 +1,447 @@
+/* --- CONFIGURAÇÕES GERAIS --- */
+:root {
+    --primary: #1a5276;
+    --accent: #3498db;
+    --text-color: #444;
+    --bg-light: #f9f9f9;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background-color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* --- NAVBAR --- */
+.navbar-servico1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    z-index: 1000;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.container-nav {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.logo-servico1 img {
+    height: 200px; 
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* AJUSTE: Menu centralizado e Botão empurrado para a direita */
+.nav-links-servico1 {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    align-items: center;
+    padding: 0;
+    flex: 1; /* Ocupa o espaço central disponível */
+    justify-content: center; /* Centraliza os links no meio */
+}
+
+.nav-links-servico1 a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+    position: relative;
+    padding: 8px 0;
+    display: flex;
+}
+
+.nav-links-servico1 a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links-servico1 a:hover {
+    color: var(--accent);
+}
+
+.nav-links-servico1 a:hover::after {
+    width: 100%;
+}
+
+/* Botão de Contato */
+.btn-contato-servico1 {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Impede que o texto do botão quebre */
+}
+
+.btn-contato-servico1:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* --- HERO --- */
+.hero-servico1 {
+    margin-top: 40px;
+    margin-bottom: -50px;
+    padding: 100px 0;
+    background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('TIPOLOGIAFOCUS (1).png');
+    background-size: 30%;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.titulo-principal-servico1 {
+    color: var(--primary);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+/* --- TÍTULOS COM LINHA --- */
+.titulo-com-linha {
+    color: var(--primary);
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.titulo-com-linha::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+}
+
+.secao-formato .titulo-com-linha::after,
+.secao-caracteristicas .titulo-com-linha::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* --- SEÇÃO DE FOTOS --- */
+.flex-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 80px 0;
+    width: 100%;
+}
+
+.texto-aba {
+    flex: 1;
+}
+
+.foto-placeholder-servico1 {
+    flex: 1.5;
+    height: 500px;
+    background: #f4f4f4;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ddd;
+    overflow: hidden;
+    width: 100%;
+}
+
+.grid-fotos-final {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 40px 0 100px 0;
+    width: 100%;
+}
+
+.foto-item-final {
+    height: 500px;
+    background: #f4f4f4;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ddd;
+    overflow: hidden;
+    width: 100%;
+}
+
+.foto-placeholder-servico1 img, 
+.foto-item-final img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- SEÇÃO FORMATO --- */
+.secao-formato {
+    background-color: var(--bg-light);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.secao-formato .descricao-intro {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.grid-formato {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 60px;
+    justify-content: center;
+    text-align: left;
+    margin-top: 40px;
+}
+
+.lista-aba ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-aba li {
+    margin-bottom: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.05rem;
+    color: var(--primary);
+}
+
+.lista-aba i {
+    color: var(--accent);
+    font-size: 1.3rem;
+    width: 25px;
+    text-align: center;
+}
+
+/* --- CARDS CARACTERÍSTICAS --- */
+.secao-caracteristicas {
+    padding: 100px 0;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.cards-grid-servico1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.card-servico1 {
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card-servico1:hover { transform: translateY(-10px); }
+.card-servico1 i { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
+
+/* --- SEÇÃO SERVIÇOS --- */
+.sectionServicos {
+    padding: 100px 5%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: -100px;
+}
+
+.h2servicos {
+    color: var(--primary);
+    font-size: 2.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    margin-top: -30px;
+}
+
+.h2servicos::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+.services-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    z-index: 2;
+    flex-wrap: wrap;
+    margin-top: -30px;
+}
+
+.node_servico {
+    flex: 1;
+    display: flex;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.cardServico {
+    background: #ffffff;
+    padding: 50px 30px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.cardServico:hover {
+    transform: translateY(-12px);
+    border-color: var(--accent);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.service-icon {
+    font-size: 3.5rem;
+    color: var(--accent);
+    margin-bottom: 25px;
+}
+
+.cardServico span {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 30px;
+    display: block;
+}
+.buttonServico1, .buttonServico3 {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: var(--primary);
+    color: white;
+    padding: 80px 0 20px 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    flex-wrap: wrap;
+}
+
+.footer-column { flex: 1; min-width: 250px; }
+.footer-logo { font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 15px; }
+.footer-title { margin-bottom: 25px; position: relative; }
+.footer-title::after { content: ''; width: 30px; height: 3px; background: var(--accent); position: absolute; bottom: -8px; left: 0; }
+.footer-links, .footer-contact { list-style: none; padding: 0; }
+.footer-links li, .footer-contact li { margin-bottom: 12px; opacity: 0.8; display: flex; align-items: center; gap: 10px; }
+.footer-links a { color: white; text-decoration: none; }
+.footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+.footer-socials a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; transition: 0.3s; }
+.footer-socials a:hover { background: var(--accent); }
+.footer-bottom { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; opacity: 0.5; }
+
+/* --- RESPONSIVIDADE --- */
+.menu-toggle-servico1 { display: none; cursor: pointer; }
+.menu-toggle-servico1 .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background: var(--primary); transition: 0.3s; }
+
+@media (max-width: 1024px) {
+    .menu-toggle-servico1 { display: block; }
+    .nav-links-servico1 {
+        position: fixed; left: -100%; top: 100px; flex-direction: column; background: white;
+        width: 100%; height: calc(100vh - 100px); transition: 0.3s; padding: 50px 0;
+        justify-content: flex-start; /* No mobile, os links ficam no topo do menu */
+    }
+    .nav-links-servico1.active { left: 0; }
+    .btn-contato-servico1 { display: none; } /* Oculta o botão no mobile se preferir usar o menu */
+}
+
+@media (max-width: 768px) {
+    .flex-row { flex-direction: column; text-align: center; }
+    .foto-placeholder-servico1 { width: 100%; height: 300px; }
+    .grid-formato { grid-template-columns: 1fr; }
+    .titulo-principal-servico1 { font-size: 2.2rem; }
+    .footer-container { text-align: center; flex-direction: column; }
+}

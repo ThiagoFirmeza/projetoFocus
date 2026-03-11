@@ -1,0 +1,513 @@
+/* --- CONFIGURAÇÕES GERAIS --- */
+:root {
+        --primary: #1a5276;
+        --accent: #3498db;
+        --path-bg: #e0e0e0;
+        --text-color: #444;
+        --card-width: 320px;
+    }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background-color: #fff;
+}
+
+html {
+    scroll-behavior: smooth; 
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* --- NAVBAR SERVICO1 --- */
+.navbar-servico1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    z-index: 1000;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.container-nav-servico1 {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Logo --- */
+.logo-servico1 a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-servico1 img {
+    height: 60px; /* Ajustado para caber nos 80px da nav */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-servico1 img:hover {
+    transform: scale(1.05);
+}
+
+/* --- Links de Navegação --- */
+.nav-links-servico1 {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-links-servico1 a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.nav-links-servico1 a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: 0.3s;
+}
+
+.nav-links-servico1 a:hover {
+    color: var(--primary);
+}
+
+.nav-links-servico1 a:hover::after {
+    width: 100%;
+}
+
+/* --- Botão Contato --- */
+.btn-contato-servico1 {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.2);
+}
+
+.btn-contato-servico1:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* --- Menu Hamburguer --- */
+.menu-toggle-servico1 {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-toggle-servico1 .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background: var(--primary);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 1024px) {
+    .menu-toggle-servico1 {
+        display: block;
+        z-index: 1001;
+    }
+
+    /* Transformação do ícone em X (necessário JS para add classe .active) */
+    .menu-toggle-servico1.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle-servico1.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle-servico1.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .nav-links-servico1 {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        height: calc(100vh - 80px);
+        text-align: center;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        padding: 40px 0;
+        gap: 30px;
+    }
+
+    .nav-links-servico1.active {
+        left: 0;
+    }
+
+    /* Esconde o botão original e você pode adicionar um dentro da lista se desejar */
+    .nav-button-container {
+        display: none; 
+    }
+
+    .logo-servico1 img {
+        height: 45px;
+    }
+}
+
+/* --- TÍTULOS COM LINHA AZUL (PADRÃO SOLICITADO) --- */
+.titulo-com-linha {
+    color: var(--primary);
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.titulo-com-linha::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+/* --- HERO SERVICO1 --- */
+.hero-servico1 {
+    margin-top: 80px;
+    padding: 100px 0;
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('logo\ Focus\ \ \(1\)\ \(1\).png');
+    background-size: contain; background-position: center;
+    text-align: center;
+    margin-bottom: -50px;
+}
+
+.titulo-principal-servico1 { color: var(--primary); font-size: 3rem; margin: 0; }
+
+/* --- SEÇÕES --- */
+.secao-aba, .secao-formato, .secao-caracteristicas { padding: 80px 0; text-align: center; }
+
+.flex-row { display: flex; align-items: center; gap: 50px; text-align: left; }
+
+.texto-aba { flex: 1; }
+
+.foto-placeholder-servico1 {
+    flex: 1; height: 350px; background: #eee;
+    border-radius: 20px; display: flex; align-items: center; justify-content: center;
+    border: 2px dashed #ccc; color: #999;
+}
+
+/* --- SEÇÃO SERVICOS --- */
+.secao-servicos {
+    padding: 100px 10%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: -80px;
+}
+
+/* Título com a linha azul centralizada */
+.h2servicos {
+    color: var(--primary);
+    font-size: 2.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+    margin-bottom: 50px;
+    z-index: 2;
+}
+
+.h2servicos::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+/* Container Flex para colocar os cards lado a lado */
+.services-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    z-index: 2;
+    flex-wrap: wrap; /* Garante que quebre linha em celulares */
+}
+
+/* Ajuste das larguras dos itens dos serviços */
+.node_servico {
+    flex: 1;
+    display: flex;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.cardServico {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.cardServico:hover {
+    transform: translateY(-12px);
+    border-color: var(--accent);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* Ícones e textos internos */
+.service-icon {
+    font-size: 3.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.cardServico span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 25px;
+    display: block;
+}
+
+/* Botões dos cards */
+.cardServico button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-top: auto;
+}
+
+.cardServico button:hover {
+    background-color: var(--accent);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 992px) {
+    .services-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .node_servico {
+        width: 100%;
+    }
+}
+/* --- GRID DE FORMATO --- */
+.grid-formato { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; margin-top: 30px; }
+.lista-aba ul { list-style: none; padding: 0; }
+.lista-aba li { margin-bottom: 12px; font-weight: 600; }
+.lista-aba i { color: var(--accent); margin-right: 10px; }
+
+/* --- CARDS DE CARACTERÍSTICAS --- */
+.cards-grid-servico1 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.card-servico1 {
+    padding: 40px; background: #fff; border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s;
+}
+.card-servico1:hover { transform: translateY(-10px); }
+.card-servico1 i { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
+
+/* --- FOOTER --- */
+.footer-servico1 { background: var(--primary); color: #fff; padding: 30px 0; text-align: center; font-size: 0.9rem; }
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .flex-row, .grid-formato { flex-direction: column; grid-template-columns: 1fr; }
+    .titulo-com-linha { font-size: 1.8rem; }
+    .nav-links-servico1 { display: none; }
+}
+
+.footer {
+    background-color: var(--primary);
+    color: white;
+    padding: 80px 0 20px 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 0 10%;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.footer-description {
+    line-height: 1.6;
+    opacity: 0.8;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer-title::after {
+    content: '';
+    width: 30px;
+    height: 3px;
+    background: var(--accent);
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+}
+
+/* Links e Listas */
+.footer-links, .footer-contact {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li, .footer-contact li {
+    margin-bottom: 15px;
+    opacity: 0.8;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links li:hover {
+    opacity: 1;
+    transform: translateX(5px);
+    color: var(--accent);
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+/* Redes Sociais */
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-socials a:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+}
+
+/* Rodapé Final */
+.footer-bottom {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-links li, .footer-contact li {
+        justify-content: center;
+    }
+    .footer-socials {
+        justify-content: center;
+    }
+}
+
