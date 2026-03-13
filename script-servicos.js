@@ -42,4 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
         secao.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
         observer.observe(secao);
     });
+
+    const logo = document.querySelector('.logo-servico1');
+
+    logo.style.cursor = 'pointer';
+
+    logo.addEventListener('click', () => {
+        window.location.href = 'index.html'; // Altere para o nome do seu arquivo principal
+});
 });
