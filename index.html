@@ -225,144 +225,229 @@
 
     /* --- LINHA DO TEMPO CORRIGIDA --- */
     .timeline-section {
-        background: #fdfdfd;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        padding: 40px 0 60px 0;
-        box-sizing: border-box;
-    }
+    background: #fdfdfd;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente na tela */
+    align-items: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    min-height: 100vh; /* Garante que ocupe a altura da tela */
+}
 
+.timeline-section::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; 
+    height: 600px;
+    background-image: url('logoFocus.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.15; 
+    z-index: 0;
+    pointer-events: none;
+}
+
+.timeline-title, 
+.maze-horizontal-scroll, 
+.nav-container-timeline {
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-title {
+    text-align: center;
+    color: var(--primary);
+    font-size: 2.8rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin: 0 0 10px 0; /* Margem reduzida */
+    z-index: 10;
+}
+
+.maze-horizontal-scroll {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    width: 100%;
+    height: 450px; /* Altura ajustada para caber tudo na tela */
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+.maze-horizontal-scroll::-webkit-scrollbar { display: none; }
+
+.maze-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 10%; /* Padding reduzido para visualização melhor */
+    height: 100%;
+    position: relative;
+    min-width: fit-content;
+}
+
+.timeline-track {
+    position: absolute;
+    height: 4px;
+    background: var(--path-bg);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.maze-progress {
+    position: absolute;
+    height: 100%;
+    background: var(--accent);
+    width: 0;
+    left: 0;
+    z-index: 2;
+    transition: width 0.3s ease-out;
+}
+
+.node {
+    position: relative;
+    width: var(--card-width);
+    margin-right: 120px;
+    flex-shrink: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+}
+
+.node:last-child { margin-right: 0; }
+
+.card {
+    background: white;
+    padding: 15px; /* Reduzido de 20px para economizar espaço */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    width: 240px; /* Reduzido para ficar mais delicado */
+    position: absolute;
+    border-bottom: 5px solid var(--path-bg);
+    transition: 0.4s ease;
+    opacity: 0.2;
+    max-height: 250px; /* Aumentado levemente para textos longos */
+    overflow-y: auto;
+}
+
+.card span.year {
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.card p {
+    font-size: 0.85rem; /* Diminuído para caber mais texto */
+    line-height: 1.4;
+    margin: 0;
+}
+
+.node:nth-child(odd) .card { top: 50px; } 
+.node:nth-child(even) .card { bottom: 50px; }
+
+.dot {
+    width: 45px; 
+    height: 45px; 
+    background: white;
+    border: 3px solid var(--path-bg);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.node.active .card { 
+    border-bottom-color: var(--accent); 
+    opacity: 1; 
+    transform: scale(1.05);
+    z-index: 100;
+}
+
+.node.active .dot { 
+    background: var(--accent); 
+    border-color: white; 
+    color: white; 
+    box-shadow: 0 0 15px var(--accent); 
+    width: 55px; 
+    height: 55px;
+    font-size: 14px;
+}
+
+.nav-container-timeline {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    z-index: 100;
+}
+
+.nav-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
     .timeline-title {
-        text-align: center;
-        color: var(--primary);
-        font-size: 2.8rem;
-        font-weight: bold;
-        letter-spacing: 3px;
-        margin: 0 0 40px 0;
-        z-index: 10;
-        margin-bottom: -30px;
+        font-size: 2rem;
     }
-
-    .maze-horizontal-scroll {
-        display: flex;
-        align-items: center;
-        overflow-x: auto;
-        width: 100%;
-        height: 500px; 
-        scrollbar-width: none;
-        scroll-behavior: smooth;
-        position: relative;
-    }
-    .maze-horizontal-scroll::-webkit-scrollbar { display: none; }
-
-    .maze-wrapper {
-        display: flex;
-        align-items: center;
-        padding: 0 20% 0 20%; 
-        height: 100%;
-        position: relative;
-        min-width: fit-content;
-    }
-
-    .timeline-track {
-        position: absolute;
-        height: 4px;
-        background: var(--path-bg);
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1;
-    }
-
-    .maze-progress {
-        position: absolute;
-        height: 100%;
-        background: var(--accent);
-        width: 0;
-        left: 0;
-        z-index: 2;
-        transition: width 0.3s ease-out;
-    }
-
     .node {
-        position: relative;
-        width: var(--card-width);
-        margin-right: 120px;
-        flex-shrink: 0;
-        z-index: 3;
-        display: flex;
-        justify-content: center;
+        margin-right: 60px;
     }
-
-    .node:last-child { margin-right: 0; }
-
-    .card {
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        width: var(--card-width);
-        position: absolute;
-        border-bottom: 5px solid var(--path-bg);
-        transition: 0.4s ease;
-        opacity: 0.2;
-        max-height: 220px;
-        overflow-y: auto;
+    :root {
+        --card-width: 220px;
     }
-
-    .node:nth-child(odd) .card { top: 40px; } 
-    .node:nth-child(even) .card { bottom: 40px; }
-
     .dot {
-        width: 22px;
-        height: 22px;
-        background: white;
-        border: 3px solid var(--path-bg);
-        border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 5;
+        width: 38px;
+        height: 38px;
+        font-size: 10px;
+    }
+    .timeline-section::before {
+        width: 300px;
+        height: 300px;
     }
 
-    .node.active .card { 
-        border-bottom-color: var(--accent); 
-        opacity: 1; 
-        transform: scale(1.05);
-        z-index: 100;
+    @media (max-width: 768px) {
+    .card {
+        width: 200px;
+        padding: 12px;
+    }
+    
+    .card p {
+        font-size: 0.75rem;
     }
 
-    .node.active .dot { 
-        background: var(--accent); 
-        border-color: white; 
-        box-shadow: 0 0 15px var(--accent); 
-    }
-
-    .nav-container-timeline {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        z-index: 100;
-    }
-
-    .nav-btn {
-        background: var(--primary);
-        color: white;
-        border: none;
-        width: 55px;
-        height: 55px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        transition: 0.3s ease;
-        margin-top: -40px;
-    }
+    .node:nth-child(odd) .card { top: 45px; }
+    .node:nth-child(even) .card { bottom: 45px; }
+}
+}
 
     /* --- SEÇÃO SERVIÇOS --- */
     .sectionServicos {
@@ -1014,31 +1099,61 @@
         <div class="foto-placeholder">FOTO/LOGO</div>
         <div class="texto-quem-somos">
             <h1 class="h1QuemSomos">Quem somos?</h1>
-            <p class="pQuemSomos">Somos uma clínica transdisciplinar com atuação baseada na ciência da Análise do Comportamento Aplicada – ABA...</p>
+            <p class="pQuemSomos">Somos uma clínica transdisciplinar com atuação baseada na ciência da Análise do Comportamento Aplicada – ABA.
+A Focus dispõe de serviços terapêuticos para pessoas com atraso no neurodesenvolvimento: TDAH - Transtorno de Atenção e Hiperatividade, dislexia, síndromes orgânicas e/ou metabólicas, TEA – Transtorno do Espectro do Autismo, TOD - Transtorno Opositor Desafiador, DI – Deficiência Intelectual, entre outras.
+</p>
         </div>
     </section>
 
     <section class="timeline-section" id="time-line">
-        <h2 class="timeline-title">HISTÓRIA</h2>
-        <div class="maze-horizontal-scroll" id="scrollContainer">
-            <div class="maze-wrapper">
-                <div class="timeline-track" id="timelineTrack">
-                    <div class="maze-progress" id="progressLine"></div>
-                </div>
-                <div class="node"><div class="card"><span class="year">2017</span><p>Surge a Focus em Natal - RN.</p></div><div class="dot"></div></div>
-                <div class="node"><div class="card"><span class="year">2018</span><p>Reconhecimento na ciência ABA.</p></div><div class="dot"></div></div>
-                <div class="node"><div class="card"><span class="year">2019</span><p>Nova sede e 1º Vivenciar Autismos.</p></div><div class="dot"></div></div>
-                <div class="node"><div class="card"><span class="year">2020</span><p>Adaptação e novos protocolos clínicos.</p></div><div class="dot"></div></div>
-                <div class="node"><div class="card"><span class="year">2021</span><p>Expansão da equipe e infraestrutura.</p></div><div class="dot"></div></div>
-                <div class="node"><div class="card"><span class="year">2022</span><p>Novas especialidades transdisciplinares.</p></div><div class="dot"></div></div>
-                <div class="node"><div class="card"><span class="year">2023/24</span><p>Expansão e novas unidades especializadas.</p></div><div class="dot"></div></div>
+    <h2 class="timeline-title">HISTÓRIA</h2>
+    <div class="maze-horizontal-scroll" id="scrollContainer">
+        <div class="maze-wrapper">
+            <div class="timeline-track" id="timelineTrack">
+                <div class="maze-progress" id="progressLine"></div>
+            </div>
+            
+            <div class="node">
+                <div class="card"><span class="year"></span><p>Surge a Focus Intervenção Comportamental com a primeira sede na rua Joaquim Victor de Holanda no bairro de Lagoa Nova, em Natal - RN.</p></div>
+                <div class="dot">2017</div>
+            </div>
+
+            <div class="node">
+                <div class="card"><span class="year"></span><p>Se estabelece com um trabalho reconhecido a partir da ciência da Análise do Comportamento Aplicada – ABA</p></div>
+                <div class="dot">2018</div>
+            </div>
+
+            <div class="node">
+                <div class="card"><span class="year"></span><p>Muda-se para a nova sede na Av. Miguel Castro, ampliando o espaço e implantando um serviço transdisciplinar baseado na ciência ABA. Além disso, realiza o 1º Vivenciar Autismos com a presença de renomados profissionais e cientistas da área do neurodesenvolvimento.</p></div>
+                <div class="dot">2019</div>
+            </div>
+
+            <div class="node">
+                <div class="card"><span class="year"></span><p>Realiza o 2º Vivenciar Autismos ampliado de 4 horas para 24 horas, com temas variados e profissionais nacionais e internacionais, comprometidos com a ciência e o neurodesenvolvimento</p></div>
+                <div class="dot">2020</div>
+            </div>
+
+            <div class="node">
+                <div class="card"><span class="year"></span><p>Instala estrutura física independente para intervenção com adolescentes e adultos.</p></div>
+                <div class="dot">2021</div>
+            </div>
+
+            <div class="node">
+                <div class="card"><span class="year"></span><p>Realiza o 3º Vivenciar autismos com 24 horas de conteúdo científico e inovando com o protagonismo com autismo e famílias na apresentação de relatos e discussão de temas, tornando-se assim numa vivência única.</p></div>
+                <div class="dot">2022</div>
+            </div>
+
+            <div class="node">
+                <div class="card"><span class="year"></span><p>Inaugura nova unidade ampliada para intervenção de adolescentes e adultos, com o espaço pensado, planejado e projetado para o desenvlvimento de habilidades.</p></div>
+                <div class="dot">23/24</div>
             </div>
         </div>
-        <div class="nav-container-timeline">
-            <button class="nav-btn" onclick="goToStep(-1)">←</button>
-            <button class="nav-btn" onclick="goToStep(1)">→</button>
-        </div>
-    </section>
+    </div>
+    <div class="nav-container-timeline">
+        <button class="nav-btn" onclick="goToStep(-1)">←</button>
+        <button class="nav-btn" onclick="goToStep(1)">→</button>
+    </div>
+</section>
 
     <section class="sectionServicos" id="servicos">
         <div class="bg-logo-destaque"></div>
