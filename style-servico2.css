@@ -10,15 +10,13 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    color: var(--text-color);
     background-color: #fff;
-    line-height: 1.6;
     overflow-x: hidden;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+
 }
 
 .container {
@@ -35,9 +33,9 @@ html {
     width: 100%;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.5);
     z-index: 1000;
-    height: 100px;
+    height: 80px;
     display: flex;
     align-items: center;
 }
@@ -59,42 +57,47 @@ html {
     transition: transform 0.3s ease;
 }
 
+.logo-servico1:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
 /* AJUSTE: Menu centralizado e Botão empurrado para a direita */
 .nav-links-servico1 {
     display: flex;
     list-style: none;
-    gap: 35px;
-    align-items: center;
+    gap: 25px;
+    margin: 0;
     padding: 0;
-    flex: 1; /* Ocupa o espaço central disponível */
-    justify-content: center; /* Centraliza os links no meio */
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    
 }
 
 .nav-links-servico1 a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     transition: 0.3s;
     position: relative;
-    padding: 8px 0;
-    display: flex;
 }
 
 .nav-links-servico1 a::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -5px;
     left: 0;
     width: 0;
-    height: 3px;
+    height: 2px;
     background-color: var(--accent);
-    transition: width 0.3s ease;
+    transition: 0.3s;
 }
 
 .nav-links-servico1 a:hover {
-    color: var(--accent);
+    color: var(--primary);
 }
 
 .nav-links-servico1 a:hover::after {
@@ -106,14 +109,15 @@ html {
     background-color: var(--primary);
     color: white;
     border: none;
-    padding: 12px 28px;
+    padding: 10px 25px;
     border-radius: 50px;
     font-weight: 700;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: 0.3s;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    white-space: nowrap; /* Impede que o texto do botão quebre */
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.2);
+
 }
 
 .btn-contato-servico1:hover {
@@ -146,6 +150,7 @@ html {
     font-size: 2.2rem;
     position: relative;
     display: inline-block;
+    justify-content: center;
     margin-bottom: 40px;
     text-transform: uppercase;
     font-weight: 800;
@@ -160,6 +165,8 @@ html {
     height: 4px;
     background-color: var(--accent);
 }
+
+
 
 .secao-formato .titulo-com-linha::after,
 .secao-caracteristicas .titulo-com-linha::after {
@@ -226,6 +233,7 @@ html {
     background-color: var(--bg-light);
     padding: 100px 0;
     text-align: center;
+    margin-top: -40px;
 }
 
 .secao-formato .descricao-intro {
@@ -271,7 +279,7 @@ html {
 .secao-caracteristicas {
     padding: 100px 0;
     text-align: center;
-    margin-top: 70px;
+    margin-top: -70px;
 }
 
 .cards-grid-servico1 {
@@ -286,7 +294,6 @@ html {
     background: #fff;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: 0.3s;
 }
 
 .card-servico1:hover { transform: translateY(-10px); }
@@ -314,7 +321,7 @@ html {
     padding-bottom: 15px;
     margin-bottom: 50px;
     text-transform: uppercase;
-    margin-top: -30px;
+    margin-top: -10px;
 }
 
 .h2servicos::after {
@@ -337,7 +344,7 @@ html {
     max-width: 1200px;
     z-index: 2;
     flex-wrap: wrap;
-    margin-top: -30px;
+    margin-top: -10px;
 }
 
 .node_servico {
@@ -425,7 +432,7 @@ html {
 
 /* --- RESPONSIVIDADE --- */
 .menu-toggle-servico1 { display: none; cursor: pointer; }
-.menu-toggle-servico1 .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background: var(--primary); transition: 0.3s; }
+.menu-toggle-servico1 .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background: var(--primary); }
 
 @media (max-width: 1024px) {
     .menu-toggle-servico1 { display: block; }

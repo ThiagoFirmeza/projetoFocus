@@ -8,7 +8,7 @@
     }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     color: var(--text-color);
@@ -33,11 +33,12 @@ html {
     width: 100%;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.5);
     z-index: 1000;
     height: 80px;
     display: flex;
     align-items: center;
+    font-family: 'Segoe UI';
 }
 
 .container-nav-servico1 {
@@ -58,7 +59,7 @@ html {
 }
 
 .logo-servico1 img {
-    height: 60px; /* Ajustado para caber nos 80px da nav */
+    height: 200px; /* Ajustado para caber nos 80px da nav */
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
@@ -219,7 +220,22 @@ html {
 .titulo-principal-servico1 { color: var(--primary); font-size: 3rem; margin: 0; }
 
 /* --- SEÇÕES --- */
-.secao-aba, .secao-formato, .secao-caracteristicas { padding: 80px 0; text-align: center; }
+.secao-aba, .secao-formato{ 
+    padding: 80px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.secao-formato {
+    margin-top: -70px;
+}
+
+.secao-caracteristicas {
+    padding: 80px 0;
+    text-align: center;
+    margin-top: -80px;
+}
 
 .flex-row { display: flex; align-items: center; gap: 50px; text-align: left; }
 
@@ -240,7 +256,7 @@ html {
     align-items: center;
     position: relative;
     overflow: hidden;
-    margin-top: -80px;
+    margin-top: -100px;
 }
 
 /* Título com a linha azul centralizada */
