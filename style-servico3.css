@@ -28,7 +28,8 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px; /* Resolve o problema de ficar colado nas bordas */
+    padding: 0 40px;
+    /* Resolve o problema de ficar colado nas bordas */
 }
 
 /* --- NAVBAR --- */
@@ -37,9 +38,9 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     height: 80px;
     display: flex;
@@ -76,7 +77,8 @@ body {
     margin: 0;
     padding: 0;
     flex: 1;
-    justify-content: center; /* Centraliza os links no meio */
+    justify-content: center;
+    /* Centraliza os links no meio */
 }
 
 .nav-links-servico1 a {
@@ -100,15 +102,15 @@ body {
     height: 2px;
     background-color: var(--accent);
     transition: 0.3s;
-} */
+}
 
-.nav-links-servico1 a:hover {
+*/ .nav-links-servico1 a:hover {
     color: var(--primary);
 }
 
 .nav-links-servico1 a.active::after {
     width: 100%;
-} 
+}
 
 .btn-contato-servico1 {
     background-color: var(--primary);
@@ -126,8 +128,9 @@ body {
 .hero-servico1 {
     margin-top: 80px;
     padding: 100px 0;
-    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('logo\ Focus\ \ \(1\)\ \(1\).png');
-    background-size: contain; background-position: center;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('logo\ Focus\ \ \(1\)\ \(1\).png');
+    background-size: contain;
+    background-position: center;
     text-align: center;
     margin-bottom: -50px;
 }
@@ -218,7 +221,7 @@ body {
 .titulo-com-linha {
     color: var(--primary);
     font-size: 2.5rem;
-    position:relative ;
+    position: relative;
     padding-bottom: px;
     margin-bottom: 20px;
 }
@@ -239,11 +242,10 @@ body {
 }
 
 .foto-placeholder {
-    flex: 1;
+    width: 100%;
     height: 400px;
-    width: 300px;
-    background: #eee;
-    border-radius: 20px;
+    background: #ddd;
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,7 +254,8 @@ body {
 /* GRID DE 3 CARDS LADO A LADO */
 .grid-tres-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Garante os 3 na mesma linha */
+    grid-template-columns: repeat(3, 1fr);
+    /* Garante os 3 na mesma linha */
     gap: 25px;
 }
 
@@ -260,7 +263,7 @@ body {
     background: #fff;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     border-top: 5px solid #3498db;
 }
 
@@ -278,24 +281,55 @@ body {
 
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
-    .grid-tres-cards { grid-template-columns: repeat(2, 1fr); }
+    .grid-tres-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
-    .container { padding: 0 20px; }
-    .grid-tres-cards { grid-template-columns: 1fr; }
-    .flex-row { flex-direction: column; text-align: center; }
-    .nav-links-servico1 { display: none; }
+    .container {
+        padding: 0 20px;
+    }
+
+    .grid-tres-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .flex-row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links-servico1 {
+        display: none;
+    }
 }
 
 /* --- FOOTER --- */
-.footer-servico1 { background: var(--primary); color: #fff; padding: 30px 0; text-align: center; font-size: 0.9rem; }
+.footer-servico1 {
+    background: var(--primary);
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
-    .flex-row, .grid-formato { flex-direction: column; grid-template-columns: 1fr; }
-    .titulo-com-linha { font-size: 1.8rem; }
-    .nav-links-servico1 { display: none; }
+
+    .flex-row,
+    .grid-formato {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+
+    .titulo-com-linha {
+        font-size: 1.8rem;
+    }
+
+    .nav-links-servico1 {
+        display: none;
+    }
 }
 
 .footer {
@@ -352,12 +386,14 @@ body {
 }
 
 /* Links e Listas */
-.footer-links, .footer-contact {
+.footer-links,
+.footer-contact {
     list-style: none;
     padding: 0;
 }
 
-.footer-links li, .footer-contact li {
+.footer-links li,
+.footer-contact li {
     margin-bottom: 15px;
     opacity: 0.8;
     transition: 0.3s;
@@ -421,13 +457,17 @@ body {
         flex-direction: column;
         text-align: center;
     }
+
     .footer-title::after {
         left: 50%;
         transform: translateX(-50%);
     }
-    .footer-links li, .footer-contact li {
+
+    .footer-links li,
+    .footer-contact li {
         justify-content: center;
     }
+
     .footer-socials {
         justify-content: center;
     }
@@ -435,13 +475,13 @@ body {
 
 /* --- AJUSTE NA NAVBAR (GERAL) --- */
 .container-nav {
-width: 100%;
-max-width: 1400px;
-margin: 0 auto;
-padding: 0 5%;
-display: flex;
-justify-content: space-between;
-align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Esconde o hamburguer no Desktop */
@@ -463,7 +503,8 @@ align-items: center;
 
 @media (max-width: 1024px) {
     .navbar-servico1 {
-        height: 80px; /* Reduz um pouco a altura da barra no mobile */
+        height: 80px;
+        /* Reduz um pouco a altura da barra no mobile */
     }
 
     /* Aumenta a Logo conforme solicitado */
@@ -473,7 +514,7 @@ align-items: center;
     }
 
     /* Esconde os links horizontais e o botão de contato original */
-    .nav-links-servico1, 
+    .nav-links-servico1,
     .btn-contato-servico1 {
         display: none;
     }
@@ -481,7 +522,8 @@ align-items: center;
     /* Mostra o Menu Hambúrguer na Direita */
     .menu-toggle {
         display: flex !important;
-        margin-left: auto; /* Empurra totalmente para a direita */
+        margin-left: auto;
+        /* Empurra totalmente para a direita */
     }
 
     /* Configuração do Menu que "abre" */
@@ -498,28 +540,68 @@ align-items: center;
         padding-top: 50px;
         gap: 30px;
         z-index: 999;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     /* Transformação do hamburguer em X quando ativo */
-    .menu-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
-    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
 }
 
 @media (max-width: 768px) {
-    .titulo-principal-servico1 { font-size: 2.2rem; }
-    .subtitulo-hero { font-size: 1rem; padding: 0 20px; }
-    
-    .grid-especialidades { gap: 30px; }
-    .coluna-especialidades { width: 100%; }
-    
-    .flex-row { flex-direction: column; text-align: center; gap: 30px; }
-    .flex-row.reverse { flex-direction: column; } /* Remove a inversão no mobile */
-    
-    .grid-tres-cards { grid-template-columns: 1fr; }
-    .foto-placeholder { width: 100%; height: 250px; }
-    
-    .titulo-com-linha::after { left: 50%; transform: translateX(-50%); }
-    .titulo-com-linha { text-align: center; }
+    .titulo-principal-servico1 {
+        font-size: 2.2rem;
+    }
+
+    .subtitulo-hero {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .grid-especialidades {
+        gap: 30px;
+    }
+
+    .coluna-especialidades {
+        width: 100%;
+    }
+
+    .flex-row {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .flex-row.reverse {
+        flex-direction: column;
+    }
+
+    /* Remove a inversão no mobile */
+
+    .grid-tres-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .foto-placeholder {
+        width: 100%;
+        height: 250px;
+    }
+
+    .titulo-com-linha::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .titulo-com-linha {
+        text-align: center;
+    }
 }
