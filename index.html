@@ -1066,6 +1066,7 @@
         }
     }
     </style>
+    <link rel="stylesheet" href="responsividade.css">
 </head>
 <body>
 
@@ -1100,7 +1101,7 @@
 </nav>
 
     <section class="quemSomos" id="quem-somos">
-        <div class="foto-placeholder">FOTO/LOGO</div>
+        <img src="letreiroFocus.jpg" alt="letreiro-Focus" class="foto-placeholder">
         <div class="texto-quem-somos">
             <h1 class="h1QuemSomos">Quem somos?</h1>
             <p class="pQuemSomos">Somos uma clínica transdisciplinar com atuação baseada na ciência da Análise do Comportamento Aplicada – ABA.
@@ -1283,13 +1284,13 @@ A Focus dispõe de serviços terapêuticos para pessoas com atraso no neurodesen
     
     <div class="unidades">
         <div class="unidade1">
-            <img src="foto-unidade-infantil.jpg" alt="fotoUnidade1">
+            <img src="frenteFocus1.jpg" alt="fotoUnidade1">
             <h3 class="h3unidades">Estrutura e Diferenciais</h3>
             <p>Nossa unidade infantil é organizada em ambientes que proporcionam maior capacidade de atendimento individual e coletivo.</p>
         </div>
 
         <div class="unidade2">
-            <img src="foto-unidade-adultos.jpg" alt="fotoUnidade2">
+            <img src="frenteFocus2.jpg" alt="fotoUnidade2">
             <h3 class="h3unidades">Estrutura e Diferenciais</h3>
             <p>Nossa unidade de adolescentes e adultos é organizada em ambientes que proporcionam maior capacidade de atendimento individual e coletivo.</p>
         </div>
@@ -1350,107 +1351,7 @@ A Focus dispõe de serviços terapêuticos para pessoas com atraso no neurodesen
         <p>&copy; 2026 FOCUS Intervenção Comportamental. Todos os direitos reservados.</p>
     </div>
 </footer>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    
-    /* --- LÓGICA DO MENU MOBILE --- */
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links a');
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            // Alterna a classe active no botão (para o X) e na lista (para abrir)
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Fecha o menu automaticamente ao clicar em qualquer link (âncora)
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-    }
-
-    /* --- LÓGICA DA TIMELINE (RESPONSIVA) --- */
-    const scrollContainer = document.getElementById('scrollContainer');
-    const nodes = document.querySelectorAll('.node');
-    const progressLine = document.getElementById('progressLine');
-    const timelineTrack = document.getElementById('timelineTrack');
-    let currentIndex = 0;
-
-    function setupTrack() {
-        if (!nodes.length || !timelineTrack) return;
-        // Posição do centro do primeiro e do último nó
-        const firstNodeCenter = nodes[0].offsetLeft + (nodes[0].offsetWidth / 2);
-        const lastNodeCenter = nodes[nodes.length - 1].offsetLeft + (nodes[nodes.length - 1].offsetWidth / 2);
-        
-        timelineTrack.style.left = firstNodeCenter + "px";
-        timelineTrack.style.width = (lastNodeCenter - firstNodeCenter) + "px";
-        updateProgressBar();
-    }
-
-    function updateProgressBar() {
-        if (!nodes.length || !progressLine) return;
-        const firstNodeCenter = nodes[0].offsetLeft + (nodes[0].offsetWidth / 2);
-        const currentNodeCenter = nodes[currentIndex].offsetLeft + (nodes[currentIndex].offsetWidth / 2);
-        
-        progressLine.style.width = (currentNodeCenter - firstNodeCenter) + "px";
-    }
-
-    window.goToStep = function(dir) {
-        currentIndex = Math.max(0, Math.min(nodes.length - 1, currentIndex + dir));
-        const node = nodes[currentIndex];
-        
-        // CÁLCULO DE CENTRALIZAÇÃO: 
-        // Pega a posição do nó e subtrai metade da largura do container 
-        // para garantir que o card fique no meio em qualquer tamanho de tela (PC ou Celular)
-        const targetX = (node.offsetLeft + (node.offsetWidth / 2)) - (scrollContainer.clientWidth / 2);
-        
-        scrollContainer.scrollTo({ 
-            left: targetX, 
-            behavior: 'smooth' 
-        });
-        
-        // Atualiza classes visuais
-        nodes.forEach((n, i) => n.classList.toggle('active', i === currentIndex));
-        updateProgressBar();
-    }
-
-    /* --- SUPORTE A SWIPE (ARRASTAR COM O DEDO NO CELULAR) --- */
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    scrollContainer.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - scrollContainer.offsetLeft;
-        scrollLeft = scrollContainer.scrollLeft;
-    });
-    scrollContainer.addEventListener('mouseleave', () => isDown = false);
-    scrollContainer.addEventListener('mouseup', () => isDown = false);
-    scrollContainer.addEventListener('mousemove', (e) => {
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - scrollContainer.offsetLeft;
-        const walk = (x - startX) * 2;
-        scrollContainer.scrollLeft = scrollLeft - walk;
-    });
-
-    // Inicialização
-    setTimeout(setupTrack, 200); // Delay para garantir que o CSS carregou os tamanhos
-    window.goToStep(0);
-
-    // Recalcula se o usuário girar o celular ou redimensionar a aba
-    window.addEventListener('resize', () => {
-        setupTrack();
-        window.goToStep(0); 
-    });
-});   
-    
-</script>
+<script src="script-servicos.js"></script>
 </body>
 </html>
 
