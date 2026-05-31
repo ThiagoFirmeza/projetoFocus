@@ -1,0 +1,269 @@
+/* =========================================================
+   FOCUS — EFFECTS FRAMEWORK
+   Efeitos visuais premium para diferenciação do site.
+   Arquivo único de efeitos: não altera estrutura, apenas
+   adiciona camadas visuais e interatividade.
+   ========================================================= */
+
+/* ── 1. CURSOR PADRÃO ───────────────────────────────── */
+
+body {
+    cursor: auto;
+}
+
+/* Cursor customizado desativado */
+.cursor-dot,
+.cursor-ring {
+    display: none !important;
+}
+
+/* ── 2. REVEAL ANIMADO AO SCROLL ──────────────────────────── */
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="left"] {
+    transform: translateX(-50px);
+}
+
+[data-reveal="right"] {
+    transform: translateX(50px);
+}
+
+[data-reveal="scale"] {
+    transform: scale(0.88);
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Delay em cascata para filhos (cards, etc.) */
+[data-reveal-group] > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal-group].is-visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+[data-reveal-group].is-visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.12s; }
+[data-reveal-group].is-visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.24s; }
+[data-reveal-group].is-visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.36s; }
+[data-reveal-group].is-visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.48s; }
+[data-reveal-group].is-visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.60s; }
+[data-reveal-group].is-visible > *:nth-child(7) { opacity: 1; transform: none; transition-delay: 0.72s; }
+
+/* ── 3. EFEITO TILT 3D NOS CARDS ─────────────────────────── */
+
+.tilt-card {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    transition: box-shadow 0.4s ease;
+    will-change: transform;
+}
+
+.tilt-card:hover {
+    box-shadow: 0 25px 50px rgba(26, 82, 118, 0.18) !important;
+}
+
+.tilt-card .tilt-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        ellipse at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.18) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tilt-card:hover .tilt-glare {
+    opacity: 1;
+}
+
+/* ── 4. NAVBAR COM SCROLL-INDICATOR ──────────────────────── */
+
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent, #3498db), #1abc9c);
+    z-index: 10000;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
+}
+
+/* ── 5. PARTICLES REMOVIDO ─────────────────────────────── */
+
+/* ── 6. GRADIENTE ANIMADO DE FUNDO (SEÇÃO VALORES) ────────── */
+
+.nossosValores-container {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e9ecef 50%, #f0f7ff 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ── 7. NÚMERO CONTADOR ANIMADO ───────────────────────────── */
+
+.counter-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary, #1a5276);
+    display: inline-block;
+}
+
+/* ── 8. EFEITO RIPPLE NOS BOTÕES ──────────────────────────── */
+
+.btn-contato,
+.btn-contato-mobile,
+.btn-contato-servico1,
+.cardServico button,
+.nav-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(0);
+    animation: rippleAnim 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleAnim {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ── 9. LINHA AZUL ANIMADA EMBAIXO DOS TÍTULOS ────────────── */
+
+.h1QuemSomos::after,
+.timeline-title::after,
+.h2servicos::after,
+.tituloValores::after,
+.tituloUnidades::after,
+.tituloFeedback::after,
+.titulo-com-linha::after,
+.titulo-centralizado::after {
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 0 !important;
+}
+
+.title-animated::after {
+    width: 60px !important;
+}
+
+/* ── 10. SMOOTH HOVER NOS CARDS DE FEEDBACK ─────────────── */
+
+.cardFeedback {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s ease,
+                border-color 0.3s ease !important;
+}
+
+.cardFeedback:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 45px rgba(26, 82, 118, 0.12) !important;
+}
+
+/* ── 11. EFEITO MAGNÉTICO NOS LINKS DA NAV ───────────────── */
+
+.nav-links a,
+.nav-links-servico1 a {
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── 12. SKELETON LOADER ─────────────────────────────────── */
+
+.img-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeletonPulse 1.5s infinite;
+}
+
+@keyframes skeletonPulse {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ── 13. BOTÃO WHATSAPP FLUTUANTE ────────────────────────── */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 58px;
+    height: 58px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.6rem;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    z-index: 9990;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s ease;
+    animation: floatPulse 3s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.12);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.55);
+    color: white;
+}
+
+@keyframes floatPulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* ── 14. EFEITO DE GLASSMORPHISM NA NAVBAR ──────────────── */
+
+.navbar.scrolled,
+.navbar-servico1.scrolled {
+    background: rgba(255, 255, 255, 0.97) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+/* ── 15. HIGHLIGHT PALAVRAS-CHAVE ─────────────────────────── */
+
+.highlight-text {
+    background: linear-gradient(120deg, rgba(52, 152, 219, 0.15) 0%, rgba(52, 152, 219, 0.15) 100%);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position: 0 88%;
+    transition: background-size 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+.highlight-text.is-visible {
+    background-size: 100% 100%;
+}
